@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  email    String   @unique
+  password String
+  role     RoleType @default(staff)
+}
+
+enum RoleType {
+  receptionist
+  staff
+  manager
+}
+
+model Checking {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  Mobile    String
+  Address   String
+  ID        IdType @default(aadhar)
+  roomId    String? @db.ObjectId
+  room      Room ?  @relation(fields: [roomId], references: [id])
+  Rent      String
+  CheckIn   String
+  CheckOut  String
+  Night     String
+  TotalRent String
+}
+
+enum IdType {
+  aadhar
+  pancard
+  passport
+}
+
+enum StatusType {
+  available
+  booked
+  maintenance
+}
+
+enum BedType {
+  single
+  double
+  triple
+}
+
+enum ACType {
+  without
+  with
+}
+
+model Room {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  RoomNumber String
+  status     StatusType @default(available)
+  bed        BedType    @default(single)
+  ac         ACType     @default(without)
+  Rent       String
+  checkins   Checking[]
+}
