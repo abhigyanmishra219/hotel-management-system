@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-export function createToken(data: string) {
+export function createToken(data: { id: string }) {
     const secret = process.env.JWT_SECRET;
 
     if (!secret) {
