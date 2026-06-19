@@ -51,4 +51,4 @@ export async function POST(req: NextRequest) {
     console.log("checkin error", err);
     return NextResponse.json({ success: false, message: msg }, { status: 500 });
   }
-}
+} 

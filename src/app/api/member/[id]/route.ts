@@ -25,7 +25,7 @@ export async function GET(
     });
   }
 }
-export async function POST(req,{params})
+export async function POST(req:NextRequest,{params}:{params:{id:string}})
 {
   const id=params.id
   const body=await req.json()

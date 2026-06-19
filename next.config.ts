@@ -1,12 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images:{
     remotePatterns:[{
       hostname:"**"
     }]
-  }
+  },
+  webpack: (config) => {
+    config.watchOptions = {
+      ignored: [
+        '**/node_modules/**',
+        'C:\\\\Users\\\\**',
+      ],
+    };
+    return config;
+  },
 };
 
 export default nextConfig;
