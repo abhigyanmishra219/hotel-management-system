@@ -1,17 +1,16 @@
-import prismaclient from "@/services/prisma"
+import prismaclient from "@/services/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = params.id; 
+    const { id } = await params;
 
     const room = await prismaclient.room.findUnique({
       where: { id },
     });
-
 
     return NextResponse.json({
       success: true,
@@ -19,9 +18,13 @@ export async function GET(
     });
   } catch (error) {
     console.error("Error fetching room:", error);
-    return NextResponse.json({
-      success: false,
-      message: "Internal Server Error",
-    });
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Internal Server Error",
+      },
+      { status: 500 }
+    );
   }
 }
