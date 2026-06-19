@@ -18,7 +18,7 @@ export default function Addmember()
            role
         };
         try{
-           const response=await fetch("http://localhost:3000/api/Add",{
+           const response=await fetch("/api/Add",{
             method:"POST",
             body:JSON.stringify(Member)
           });

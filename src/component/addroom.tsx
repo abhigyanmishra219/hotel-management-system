@@ -20,14 +20,14 @@ export default function AddRoom()
             Rent,
         };
         try{
-          const response=await fetch("http://localhost:3000/api/Room",{
+          const response=await fetch("/api/Room",{
             method:"POST",
             body:JSON.stringify(Room)
           });
           const data=await response.json()
           if(data.success)
           {
-            toast("Room Addede Successfully")
+            toast("Room Added Successfully")
             setRoomNumber("")
             setRent("")
           }

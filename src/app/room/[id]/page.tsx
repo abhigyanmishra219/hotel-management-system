@@ -37,7 +37,7 @@ export default function FetchRoomById({ params }: { params: Promise<{ id: string
   useEffect(() => {
     async function fetchDetails() {
       try {
-        const response = await fetch(`http://localhost:3000/api/Room/${id}`);
+        const response = await fetch(`/api/Room/${id}`);
         const data = await response.json();
         setRoom(data?.room);
       } catch (error: unknown) {

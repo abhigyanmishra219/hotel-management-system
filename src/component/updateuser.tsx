@@ -16,7 +16,7 @@ export default function UpdateUser({ id }: { id: Promise<{ id: string }> })
 
 		async function fecthuser()
 		{
-			const res=await fetch(`http://localhost:3000/api/member/${id}`)
+			const res=await fetch(`/api/member/${id}`)
 			const data=await res.json();
 			   console.log("API Response:", data);
 			if(data.success && data.user)
@@ -30,7 +30,7 @@ export default function UpdateUser({ id }: { id: Promise<{ id: string }> })
 		}
 		async function handleupdate()
 		{
-           const res=await fetch(`http://localhost:3000/api/member/${id}`,{
+           const res=await fetch(`/api/member/${id}`,{
 			method :"POST",
 			body:JSON.stringify({name,email,password,role})
 		   });
@@ -78,7 +78,7 @@ export default function UpdateUser({ id }: { id: Promise<{ id: string }> })
 			</label>
             <label>
 				<Text as="div" size="2" mb="1" weight="bold">
-					Pasword
+					Password
 				</Text>
 				<TextField.Root
 						value={password}

@@ -30,7 +30,7 @@ export default function Displayrecords() {
 
   useEffect(() => {
     async function fetchrecord() {
-      const res = await fetch("http://localhost:3000/api/record");
+      const res = await fetch("/api/record");
       const data = await res.json();
       setRecords(data?.data || []);
     }

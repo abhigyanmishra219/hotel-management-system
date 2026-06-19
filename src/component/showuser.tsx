@@ -16,7 +16,7 @@ export default function DisplayUsers() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const res = await fetch("http://localhost:3000/api/member");
+      const res = await fetch("/api/member");
       const data = await res.json();
       setUsers(data?.user || []);
     }
